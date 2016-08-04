@@ -24,4 +24,8 @@ public class UserService {
 		List<User> users = userDao.findByName(name);
 		return users;
 	}
+	
+	public void save( User user ){
+		userDao.save(user);
+	}
 }

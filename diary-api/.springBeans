@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/root-context.xml</config>
 		<config>src/main/resources/servlet-context.xml</config>
+		<config>src/main/resources/email/email_config.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

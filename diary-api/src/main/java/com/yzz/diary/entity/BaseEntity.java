@@ -21,6 +21,7 @@ public class BaseEntity implements Serializable {
 	protected Date update_date;
 	
 	@Id
+	@Column(name="id")
 	@GeneratedValue( strategy=GenerationType.IDENTITY )
 	public Long getId(){
 		return id;
