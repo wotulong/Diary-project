@@ -2,8 +2,8 @@
 <configuration>
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} %msg%n</pattern>
-		</encoder>
+			<pattern>%d{ yyyy-MM-dd HH:mm:ss.SSS } %msg%n</pattern>
+		</encoder>s
 	</appender>
 
 	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -12,7 +12,7 @@
 			<fileNamePattern>logs/diary.%d{yyyy-MM-dd}.log</fileNamePattern>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} %msg%n</pattern>
+			<pattern>%d{ yyyy-MM-dd HH:mm:ss.SSS } %msg%n</pattern>
 		</encoder>
 	</appender>
 
