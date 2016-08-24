@@ -3,7 +3,6 @@ package com.yzz.diary.controller;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.yzz.diary.email.EmailSender;
-import com.yzz.diary.entity.User;
-import com.yzz.diary.service.UserService;
 import com.yzz.diary.utils.JsonMapper;
 import com.yzz.diary.utils.RSAUtil;
 
@@ -33,8 +29,6 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -54,8 +48,8 @@ public class HomeController {
 			Map<String,Object> kMap = RSAUtil.generateKeys();
 			
 			
-			String d1 = "hello,影子。._A|@!\\=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa123\n测试";
-			String d2 = "加密test!_.\\=Abc";
+			String d1 = "hello,褰卞瓙銆�._A|@!\\=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa123\n娴嬭瘯";
+			String d2 = "鍔犲瘑test!_.\\=Abc";
 			
 			System.out.println("pubKey: "+pubKey);
 			System.out.println("priKey: "+priKey);
@@ -78,7 +72,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		//User user = userService.findUserByName("郑书凯").get(0);
+		//User user = userService.findUserByName("閮戜功鍑�").get(0);
 		if( StringUtils.isBlank(test) ){
 			return pubKey;
 		}
@@ -90,20 +84,9 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		return "Baby,I love you! \n --------------- 郑书凯";
+		return "Baby,I love you! \n --------------- 閮戜功鍑�";
 	}
 	
-	@RequestMapping(value = "/saveuser", method = RequestMethod.POST, produces="application/json")
-	@ResponseBody
-	public String saveUser( @Valid User user, BindingResult bindResult ) {
-		
-		if( bindResult.hasErrors() ){
-			return "参数错误！";		
-		}
-		
-		userService.save(user);
-		return jsonMapper.toJson(user);
-	}
 	
 	@RequestMapping(value = "/1", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody
@@ -116,8 +99,8 @@ public class HomeController {
 			Map<String,Object> kMap = RSAUtil.generateKeys();
 			
 			
-			String d1 = "hello,影子。._A|@!\\=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa123\n测试";
-			String d2 = "加密test!_.\\=Abc";
+			String d1 = "hello,褰卞瓙銆�._A|@!\\=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa123\n娴嬭瘯";
+			String d2 = "鍔犲瘑test!_.\\=Abc";
 			
 			System.out.println("pubKey: "+pubKey);
 			System.out.println("priKey: "+priKey);
@@ -140,7 +123,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		
-		//User user = userService.findUserByName("郑书凯").get(0);
+		//User user = userService.findUserByName("閮戜功鍑�").get(0);
 		if( StringUtils.isBlank(test) ){
 			return priKey;
 		}
@@ -152,7 +135,7 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		return "Baby,I love you! \n --------------- 郑书凯";
+		return "Baby,I love you! \n --------------- 閮戜功鍑�";
 	}
 	
 	@RequestMapping( value="/mail", produces="application/json" )
@@ -160,12 +143,11 @@ public class HomeController {
 	public String sendEmail(){
 		emailSender.sendMail("zskyouxiang@126.com", "www.baidu.com");
 
-		return "发送邮件！";
+		return "鍙戦�侀偖浠讹紒";
 	}
 	
 	@RequestMapping( value="/index")
 	public String hello(){
-		logger.info("testLog:"+User.class );
 		logger.warn("warn test!");
 		return "/hello/hello";
 	}

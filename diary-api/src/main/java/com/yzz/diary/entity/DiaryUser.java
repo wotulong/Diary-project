@@ -18,6 +18,7 @@ public class DiaryUser implements Serializable {
 	private String status;
 	private String mobile_no;
 	private String last_login_ip;
+	private String cur_login_ip;
 	private Date last_login_date;
 	private String photo_uri;
 	private String desc;
@@ -64,6 +65,13 @@ public class DiaryUser implements Serializable {
 	}
 	public void setLast_login_ip( String last_login_ip ){
 		this.last_login_ip = last_login_ip;
+	}
+
+	public String getCur_login_ip(){
+		return cur_login_ip==null?"":cur_login_ip;
+	}
+	public void setCur_login_ip( String cur_login_ip ){
+		this.cur_login_ip = cur_login_ip;
 	}
 	
 	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT +08:00" )
